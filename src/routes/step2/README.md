@@ -1,5 +1,19 @@
 # Step 2 — The split of view and non-view code
 
+## Structure
+
+```
+src/routes/step2/
+├── index.tsx                          — route
+├── README.md                          — describes the refactoring
+├── types/remote-payment-method.ts     — same types
+├── adapters/fetchAdapter.ts           — same mock
+├── hooks/usePaymentMethods.ts         — state + fetching extracted
+└── components/
+    ├── Payment.tsx                    — simplified composition
+    └── PaymentMethods.tsx             — pure rendering
+```
+
 ## What changed
 
 Refactored the `Payment` component by extracting two pieces:
@@ -54,3 +68,7 @@ Each piece has a **single responsibility** and can be understood in isolation.
 This corresponds to the section
 ["The split of view and non-view code"](https://martinfowler.com/articles/modularizing-react-apps.html#TheSplitOfViewAndNon-viewCode)
 in Martin Fowler's article.
+
+---
+
+**Next:** [Step 3 — Data modelling to encapsulate logic](../step3/README.md)
