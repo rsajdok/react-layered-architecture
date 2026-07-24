@@ -1,12 +1,4 @@
-// It's from https://github.com/mkrtchian/modularizing-react-apps/blob/main/app/adapters/fetchAdapter.ts
-
 import type { RemotePaymentMethod } from '../types/remote-payment-method'
-
-export type FetchPort = (url: string) => Promise<FetchResponse>
-
-type FetchResponse = {
-  json: () => Promise<RemotePaymentMethod[]>
-}
 
 export async function fetchMock() {
   return {

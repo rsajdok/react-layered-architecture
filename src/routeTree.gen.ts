@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as Step1IndexRouteImport } from './routes/step1/index'
+import { Route as Step2IndexRouteImport } from './routes/step2/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const Step1IndexRoute = Step1IndexRouteImport.update({
   path: '/step1/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Step2IndexRoute = Step2IndexRouteImport.update({
+  id: '/step2/',
+  path: '/step2/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/step1/': typeof Step1IndexRoute
+  '/step2/': typeof Step2IndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/step1': typeof Step1IndexRoute
+  '/step2': typeof Step2IndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/step1/': typeof Step1IndexRoute
+  '/step2/': typeof Step2IndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/step1/'
+  fullPaths: '/' | '/about' | '/step1/' | '/step2/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/step1'
-  id: '__root__' | '/' | '/about' | '/step1/'
+  to: '/' | '/about' | '/step1' | '/step2'
+  id: '__root__' | '/' | '/about' | '/step1/' | '/step2/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   Step1IndexRoute: typeof Step1IndexRoute
+  Step2IndexRoute: typeof Step2IndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Step1IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/step2/': {
+      id: '/step2/'
+      path: '/step2'
+      fullPath: '/step2/'
+      preLoaderRoute: typeof Step2IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   Step1IndexRoute: Step1IndexRoute,
+  Step2IndexRoute: Step2IndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
